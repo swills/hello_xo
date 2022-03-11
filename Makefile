@@ -1,7 +1,8 @@
 hello: hello.c
+CFLAGS+=	-lxo
 
 .c.o:
 	${CC} $@ $!
 
 clean:
-	@rm hello
+	@rm -f hello
