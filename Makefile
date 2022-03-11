@@ -1,8 +1,10 @@
-hello: hello.c
-CFLAGS+=	-lxo
+LDFLAGS+=	-lxo
+CC=	cc
 
-.c.o:
-	${CC} $@ $!
+hello: hello.c
+	${CC} ${STATIC_CFLAGS} ${CFLAGS} -c $> -o ${.TARGET}.o
+	${CC} ${LDFLAGS} -o ${.TARGET} ${.TARGET}.o
+	strip ${.TARGET}
 
 clean:
-	@rm -f hello
+	@rm -f hello hello.o
